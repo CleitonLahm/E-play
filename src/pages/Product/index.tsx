@@ -1,6 +1,8 @@
 import { useParams } from 'react-router-dom'
 import Hero from '../../components/Hero'
 import Section from '../../components/Section'
+import Gallery from '../../components/Gallery'
+import R4 from '../../assets/images/resident.png'
 
 const Product = () => {
   const { id } = useParams()
@@ -27,9 +29,7 @@ const Product = () => {
           inglês, espanhol, francês, entre outros.
         </p>
       </Section>
-      <Section title="Galeria" background="black">
-        <div>fotos</div>
-      </Section>
+      <Gallery name="Jogo teste" defaultCover={R4} />
     </>
   )
 }
