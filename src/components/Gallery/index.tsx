@@ -10,11 +10,7 @@ import spiderman from '../../assets/images/banner-homem-aranha.png'
 import play from '../../assets/images/botao-play.png'
 import close from '../../assets/images/close.png'
 import zoom from '../../assets/images/zoom.png'
-
-interface GalleryItem {
-  type: 'image' | 'video'
-  url: string
-}
+import { GalleryItem } from '../../pages/Home'
 
 const mock: GalleryItem[] = [
   {
