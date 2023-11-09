@@ -13,7 +13,7 @@ const Product = () => {
     fetch(`https://fake-api-tau.vercel.app/api/eplay/jogos/${id}`)
       .then((res) => res.json())
       .then((res) => setGame(res))
-  }, [])
+  }, [id])
 
   if (!game) {
     return <h3>Carregando...</h3>
@@ -40,7 +40,7 @@ const Product = () => {
       <Gallery
         name={game.name}
         defaultCover={game.media.cover}
-        items={game.media.galery}
+        items={game.media.gallery}
       />
     </>
   )
