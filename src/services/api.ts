@@ -28,7 +28,7 @@ const api = createApi({
       query: () => 'luta'
     }),
     getRpgGames: builder.query<Game[], void>({
-      query: () => 'RPG'
+      query: () => 'rpg'
     }),
     getGame: builder.query<Game, string>({
       query: (id) => `jogos/${id}`
