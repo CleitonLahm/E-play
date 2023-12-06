@@ -2,7 +2,7 @@ import { Game } from '../../pages/Home'
 import Button from '../Button'
 import Tag from '../Tag'
 import { Banner, Infos } from './styles'
-import { formataPreco } from '../ProductsList'
+import { parseToBrl } from '../../utils/index'
 import { useDispatch } from 'react-redux'
 import { add, open } from '../../store/reducers/cart'
 
@@ -30,10 +30,10 @@ const Hero = ({ game }: Props) => {
           <h2>{game.name}</h2>
           <p>
             {game.prices.discount && (
-              <span>De {formataPreco(game.prices.old)}</span>
+              <span>De {parseToBrl(game.prices.old)}</span>
             )}
             {game.prices.discount && (
-              <>Por {formataPreco(game.prices.current)}</>
+              <p>Por {parseToBrl(game.prices.current)}</p>
             )}
           </p>
           {game.prices.discount && (
