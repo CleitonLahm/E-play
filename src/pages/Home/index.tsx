@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react'
 import Banner from '../../components/Banner'
 import ProductsList from '../../components/ProductsList'
 
@@ -36,9 +35,6 @@ export type Game = {
 const Home = () => {
   const { data: onSaleGames } = useGetOnSaleQuery()
   const { data: soonGames } = useGetSoonQuery()
-
-  const [promocoes, setPromocoes] = useState<Game[]>([])
-  const [emBreve, setEmBreve] = useState<Game[]>([])
 
   if (soonGames && onSaleGames) {
     return (

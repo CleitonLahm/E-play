@@ -7,7 +7,6 @@ import {
   Quantity,
   CartItem
 } from './styles'
-import starWars from '../../assets/images/star_wars.png'
 import Tag from '../Tag'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootReducer } from '../../store'
@@ -25,6 +24,7 @@ const Cart = () => {
 
   const getTotalPrice = () => {
     return items.reduce((acumulador, valorAtual) => {
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       return (acumulador += valorAtual.prices.current!)
     }, 0)
   }
