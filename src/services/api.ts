@@ -7,7 +7,7 @@ type Product = {
 }
 
 type PurchasePayload = {
-  product: Product[]
+  products: Product[]
   billing: {
     name: string
     email: string

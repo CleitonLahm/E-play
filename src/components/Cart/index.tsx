@@ -1,20 +1,23 @@
 import Button from '../Button'
 import {
-  Overlay,
   CartContainer,
-  Sidebar,
+  CartItem,
+  Overlay,
   Prices,
   Quantity,
-  CartItem
+  Sidebar
 } from './styles'
+
 import Tag from '../Tag'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootReducer } from '../../store'
 import { close, remove } from '../../store/reducers/cart'
-import { parseToBrl } from '../../utils/index'
+import { parseToBrl } from '../../utils'
+import { useNavigate } from 'react-router-dom'
 
 const Cart = () => {
   const { isOpen, items } = useSelector((state: RootReducer) => state.cart)
+  const navigate = useNavigate()
 
   const dispatch = useDispatch()
 
@@ -24,13 +27,21 @@ const Cart = () => {
 
   const getTotalPrice = () => {
     return items.reduce((acumulador, valorAtual) => {
-      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-      return (acumulador += valorAtual.prices.current!)
+      if (valorAtual.prices.current) {
+        return (acumulador += valorAtual.prices.current)
+      }
+
+      return 0
     }, 0)
   }
 
   const removeItem = (id: number) => {
     dispatch(remove(id))
+  }
+
+  const goToCheckout = () => {
+    navigate('/checkout')
+    closeCart()
   }
 
   return (
@@ -47,16 +58,20 @@ const Cart = () => {
                 <Tag>{item.details.system}</Tag>
                 <span>{parseToBrl(item.prices.current)}</span>
               </div>
-              <button type="button" onClick={() => removeItem(item.id)} />
+              <button onClick={() => removeItem(item.id)} />
             </CartItem>
           ))}
         </ul>
         <Quantity>{items.length} jogo(s) no carrinho</Quantity>
         <Prices>
           Total de {parseToBrl(getTotalPrice())}{' '}
-          <span>Em até 6x sem juros</span>{' '}
+          <span>em até 6x no cartão</span>
         </Prices>
-        <Button title="Clique aqui para continuar com a compra" type="button">
+        <Button
+          onclick={goToCheckout}
+          title="clique aqui para continuar com a compra"
+          type="button"
+        >
           Continuar com a compra
         </Button>
       </Sidebar>
